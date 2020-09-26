@@ -1,0 +1,20 @@
+<% provide(:title, @user.name) %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-md-2">
+          <%= gravatar_for @user %>
+        </div>
+        <div class="col-sm-4 col-md-4">
+          <ul>
+            <h6>名前</h6>
+            <li><%= @user.name %></li>
+            <h6>連絡先</h6>
+            <li><%= @user.email %></li>
+            <h6>所属</h6>
+            <li>Team A, Osaka branch</li>
+          </ul>
+        </div>
+    </div>
+</div>
+    
+  

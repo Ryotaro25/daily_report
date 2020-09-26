@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#home'
   get '/members', to: 'static_pages#members'
   get '/account', to:'static_pages#account'
+  get '/signup', to: 'users#new'
+  resources :users
 end
