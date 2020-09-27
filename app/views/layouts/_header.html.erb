@@ -1,24 +1,35 @@
-<header>
-<nav class="navbar navbar-expand-md navbar-light bg-light stickey-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Daily Report</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=
-    "#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar-content">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" id="home">
-          <%= link_to("ホーム", root_url, {class: "nav-link"})%>
-        </li>
-        <li class="nav-item" id="members">
-          <%= link_to("メンバーズ", members_url, {class: "nav-link"})%>
-        </li>
-        <li class="nav-item" id="accout">
-        <%= link_to("アカウント", account_url, {class: "nav-link"})%>
-        </li>
-      </ul>
+<header class="navbar navbar-fixed-top bg-light navbar-default">
+    <div class-"container">
+      <%= link_to "Daily Report", root_path, id: "logo" %>
     </div>
-  </div>
-</nav>
+    <nav>
+     <ul class="nav navbar-nav navbar-right" id="list" >
+        <li id="home">
+          <%= link_to("ホーム", root_url) %>
+        </li>
+        <% if logged_in? %>
+          <li class="members">
+            <%= link_to("メンバーズ", members_url) %>
+          </li>
+          <li class="dropdown"> 
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">アカウント<b class="caret"></b></a>
+            <ul class=" dropdown-menu">
+              <li id="accout">
+                <%= link_to("プロフィール", current_user) %>
+              </li>
+              <li id="accout">
+              　<%= link_to("設定", '#') %>
+            　</li>
+              <li id="accout">
+         　　　　 <%= link_to("ログアウト", logout_path, {method: :delete}) %>
+        　　  </li>
+            </ul>
+          </li>
+        <% else %>
+          <li id="accout">
+           <%= link_to("ログイン", login_path, {class: "nav-link"})%>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
 </header>
