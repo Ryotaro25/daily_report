@@ -83,3 +83,20 @@ form {
   }
 }
 
+.checkbox {
+  margin-top: -8px;
+  margin-bottom: 8px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+    font-size: small;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+.link {
+  color: white;
+}
