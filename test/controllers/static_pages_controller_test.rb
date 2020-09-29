@@ -12,12 +12,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "home | #{@base_title}"
   end
 
-  test "should get members" do
-    get members_url
-    assert_response :success
-    assert_select "title", "members | #{@base_title}"
-  end
-
   test "should get account" do
     get account_url
     assert_response :success
