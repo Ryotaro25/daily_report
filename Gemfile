@@ -37,6 +37,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '~> 1.4'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails', '~>4.11'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -55,6 +57,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'minitest-reporters', '1.3.8'
+  gem 'rspec-rails', '~>3.7'
 end
 
 group :production do
