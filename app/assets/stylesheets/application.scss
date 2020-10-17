@@ -55,10 +55,10 @@ input {
 
 body {
   padding-top: 50px;
-  background-image: url('background1.jpg');
+  //background-image: url('background1.jpg');
   height: 400px;
   background-size: cover;
-  color: #fffff0;
+  color: black;
   .fill_form {
     margin: 0 auto;
     text-align: center;
@@ -109,4 +109,8 @@ form {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+.micropost {
+  color: black;
 }
