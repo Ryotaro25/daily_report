@@ -11,7 +11,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    #検索が実行された場合の条件分岐
+    @users = if params[:search]
+      User.paginate(page: params[:page]).where('name LIKE ?', "%#{params[:search]}%")
+    else
+     User.paginate(page: params[:page])
+    end
   end
 
   def new
@@ -53,8 +58,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-
-   
 
     def correct_user
       @user = User.find(params[:id])

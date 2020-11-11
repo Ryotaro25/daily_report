@@ -1,0 +1,29 @@
+<li>
+  <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
+  <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
+  <span class="content">
+    <%= @micropost.content %>
+    <%= image_tag @micropost.display_image if @micropost.image.attached? %>
+  </span>
+  <span><%= time_ago_in_words(@micropost.created_at) %>前に投稿されました.</span>
+  <% if current_user?(@micropost.user) %>
+    <%= link_to "削除する", @micropost, method: :delete, data: { confirm: "削除を実行しますか？"} %>
+  <% end %>
+</li>
+<div class="comment-form">
+  <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
+    <div class="field">
+      <%= f.text_area :content %>
+    </div>
+    <%= f.submit "コメントする", class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div>
+  <% @comments.each do |comment| %>
+    <p>
+      <%= comment.user.name %>
+      <%= comment.content %>
+      <spna><%= time_ago_in_words(comment.created_at) %>前に投稿されました.</span>
+    </p>
+  <% end %>  
+</div>
