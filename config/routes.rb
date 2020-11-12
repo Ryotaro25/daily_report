@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   root 'static_pages#home'
   get '/help', to: 'static_pages#home'
   get '/account', to:'static_pages#account'
