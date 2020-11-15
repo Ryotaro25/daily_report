@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy, :show] do
     resources :comments, only: [:create, :destroy]
   end
+  resources :likes, only: [:create, :destroy]
 end
 

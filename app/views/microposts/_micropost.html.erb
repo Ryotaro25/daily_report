@@ -9,8 +9,8 @@
   <% if current_user?(micropost.user) %>
     <%= link_to "削除", micropost, method: :delete, data: { confirm: "削除を実行しますか？"} %>
   <% end %>
+  <%= render "likes/like", micropost: micropost %>
   <li id="detail">
     <%= link_to("レポート詳細", micropost) %>
   </li>
-
 </li>

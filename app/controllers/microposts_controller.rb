@@ -14,7 +14,7 @@ class MicropostsController < ApplicationController
     end
   end
 
-
+  #投稿の詳細を表示
   def show
     @micropost = Micropost.find_by(id: params[:id])
     @user = User.find_by(params[:id])
@@ -27,6 +27,8 @@ class MicropostsController < ApplicationController
     flash[:success] = "レポートは削除されました。"
     redirect_to request.referrer || root_url
   end
+
+ 
 
   private
     
