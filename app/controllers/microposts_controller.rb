@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
+  before_action :correct_user, only: [:destroy, :edit]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -11,6 +11,21 @@ class MicropostsController < ApplicationController
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
+    end
+  end
+
+  #投稿の編集を行う
+  def edit
+    @micropost = Micropost.find_by(id: params[:id])
+  end
+
+  def update
+    @micropost = Micropost.find_by(id: params[:id])
+    if @micropost.update(micropost_params)
+      flash[:success] = "日報が編集されました"
+      redirect_to @micropost
+    else
+      render 'edit'
     end
   end
 
@@ -25,7 +40,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     flash[:success] = "レポートは削除されました。"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
 
  

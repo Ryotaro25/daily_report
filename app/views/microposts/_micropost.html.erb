@@ -11,6 +11,7 @@
   <span><%= time_ago_in_words(micropost.created_at) %>前に投稿されました.</span>
   <% if current_user?(micropost.user) %>
     <%= link_to "削除", micropost, method: :delete, data: { confirm: "削除を実行しますか？"} %>
+    <%= link_to "編集", edit_micropost_path(micropost) %>
   <% end %>
   <%= render "likes/like", micropost: micropost %>
   <li id="detail">

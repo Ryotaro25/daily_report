@@ -1,0 +1,17 @@
+<% provide(:title, "報告を編集する" ) %>
+<h1>報告を編集する</h1>
+
+<div class="comment-form">
+  <%= form_with(model: [@micropost], local: true) do |f| %>
+    <div class="field">
+    <%= f.text_field :title, placeholder: "報告タイトル" %>
+  　　</div>
+    <div class="field">
+      <%= f.text_area :content %>
+    </div>
+    <span class="image">
+    <%= f.file_field :image %>
+  　<span>
+    <%= f.submit "編集する", class: "btn btn-primary" %>
+  <% end %>
+</div>
