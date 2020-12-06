@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comment, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :group_users
+  has_many :groups, through: :group_users
   attr_accessor :remember_token, :reset_token
   before_save { self.email = email.downcase}
   validates :name, presence: true, length: { maximum: 50}
