@@ -18,6 +18,9 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content: content) }
+  content = Faker::Lorem.sentence(word_count: 10)
+  title = Faker::Lorem.sentence(word_count: 5)
+  start_time = Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+  finish_time = Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+  users.each { |user| user.microposts.create!(content: content, title: title, start_time: start_time, finish_time: finish_time) }
 end

@@ -1,6 +1,6 @@
-<header class="navbar navbar-fixed-top bg-light navbar-default">
+<header class="navbar navbar-fixed-top navbar-default">
     <div class=" header">
-      <%= link_to "Daily Report", root_path, id: "logo" %>
+      <%= link_to "Daily Report", root_path, id: "logo" %></span>
     </div>
     <nav>
      <ul class="nav navbar-nav navbar-right" id="list" >
@@ -38,7 +38,7 @@
           </li>
         <% else %>
           <li id="accout">
-           <%= link_to("ログイン", login_path, {class: "nav-link"})%>
+           <%= link_to("新規作成はこちら", signup_path, {class: "nav-link"})%>
           </li>
         <% end %>
       </ul>

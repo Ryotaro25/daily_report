@@ -1,20 +1,32 @@
-<li id="micropost-<%= micropost.id %>">
-  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-  <span class="title">
-    <%= micropost.title %>
-  </span>
-  <span class="content">
-    <%= micropost.content %>
-    <%= image_tag micropost.display_image if micropost.image.attached? %>
-  </span>
-  <span><%= time_ago_in_words(micropost.created_at) %>前に投稿されました.</span>
-  <% if current_user?(micropost.user) %>
-    <%= link_to "削除", micropost, method: :delete, data: { confirm: "削除を実行しますか？"} %>
-    <%= link_to "編集", edit_micropost_path(micropost) %>
-  <% end %>
-  <%= render "likes/like", micropost: micropost %>
-  <li id="detail">
-    <%= link_to("レポート詳細", micropost) %>
-  </li>
-</li>
+<div class="col-md-3 post">
+  <div id="micropost-<%= micropost.id %>" class="post_content">
+    <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+    <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+    <span>
+      <p class="title">タイトル：<%= micropost.title %></p>
+    </span>
+    <span>
+      <p class="title">活動時間:
+        <%= micropost.start_time.strftime("%H:%M") %> ~
+        <%= micropost.finish_time.strftime("%H:%M") %>
+      </p>
+    </span>
+    <span class="content">
+      <p class="title">
+      <%= micropost.content %>
+      </br>
+      <%= image_tag micropost.display_image if micropost.image.attached? %>
+      </p>
+    </span>
+    </br>
+    <span class="content"><%= time_ago_in_words(micropost.created_at) %>前に投稿されました.</span> 
+    </br>
+    <span class="links">
+      <li id="detail">
+        <%= link_to("レポート詳細", micropost) %>
+        <%= render "likes/like", micropost: micropost %>
+      </li>
+    </span>
+  </br>
+  </div>
+</div>

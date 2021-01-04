@@ -6,6 +6,10 @@
     <div class="field">
     <%= f.text_field :title, placeholder: "報告タイトル" %>
   　　</div>
+  <p>活動時刻</p>
+  <div class="time_field">
+     <%= f.time_select :start_time %> ~  <%= f.time_select :finish_time %>
+  </div>
     <div class="field">
       <%= f.text_area :content %>
     </div>
@@ -13,5 +17,6 @@
     <%= f.file_field :image %>
   　<span>
     <%= f.submit "編集する", class: "btn btn-primary" %>
+
   <% end %>
 </div>

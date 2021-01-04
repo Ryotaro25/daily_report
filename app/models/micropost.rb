@@ -9,9 +9,11 @@ class Micropost < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140}
   validates :image, content_type: { in: %w[image/jpeg image/png], message: "jpegもしくはpngに変更してください"},
   size: { less_than: 5.megabytes, message: "5MB以下人変更してください"}
-
+  validates :start_time, presence: true
+  validates :finish_time, presence: true
+  
   def display_image
-    image.variant(resize_to_limit: [500, 500])
+    image.variant(resize_to_limit: [100, 100])
   end
 
    #既読、未読の機能

@@ -1,13 +1,19 @@
+<div class="main_form">
 <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :title, placeholder: "報告タイトル" %>
   </div>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "報告内容を記載する" %>
+  <span class="glyphicon glyphicon-time" style="color: black"></span>
+  <div class="time_field">
+     <%= f.time_select :start_time %> ~  <%= f.time_select :finish_time %>
+  </div>
+  <div class="field, text_field">
+    <%= f.text_area :content, value: "報告内容: " %>
   </div>
   <span class="image">
     <%= f.file_field :image %>
-  <span>
-  <%= f.submit "提出する", class: "btn btn-primary" %>
+  </span>
+  <%= f.submit "日報提出", class: "btn btn-primary" %>
 <% end %>
+</div>

@@ -6,10 +6,10 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      flash[:success] = "レポートが投稿されました"
+      flash[:success] = "日報が投稿されました"
       redirect_to root_url
     else
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_items = current_user.feed.paginate(page: params[:page], per_page: 6)
       render 'static_pages/home'
     end
   end
@@ -39,7 +39,7 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "レポートは削除されました。"
+    flash[:success] = "日報は削除されました。"
     redirect_to root_url
   end
 
@@ -48,7 +48,7 @@ class MicropostsController < ApplicationController
   private
     
     def micropost_params
-      params.require(:micropost).permit(:content, :image, :title)
+      params.require(:micropost).permit(:content, :image, :title, :start_time, :finish_time)
     end
 
     def correct_user

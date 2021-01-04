@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit user') %>
 <div class="container fill_form">
-  <h1>アカウント登録</h1>
+  <h1>アカウント編集</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3 form">
       <%= form_with(model: @user, local:true ) do |f| %>
@@ -18,7 +18,7 @@
         <%= f.label :パスワード　, "パスワード(確認用)" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-        <%= f.submit "登録情報を変更する", class: "btn btn-default" %>
+        <%= f.submit "登録情報を変更する", class: "btn btn-primary" %>
       <% end %>
 
       <div class="gravatar_edit">

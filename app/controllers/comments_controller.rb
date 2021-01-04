@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to micropost_path(@micropost)
     else
-      render "microposts/show"
+      redirect_to micropost_path(@micropost)
+      flash[:danger] = "コメントを入力してください。"
     end
   end
 

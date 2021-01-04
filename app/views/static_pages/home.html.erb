@@ -1,20 +1,33 @@
 <% provide(:title, "home") %>
 <% if logged_in? %>
   <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-md-6">
       <section class="user_info">
-        
       </section>
-      <section class="micropost_form">
+      <section class: "time_field">
+        <h2><span class="glyphicon glyphicon-pencil"></span>日報を提出する</h2>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
-    <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+    <div class="col-md-4">
+      <%= gravatar_for current_user %>
+      <%= current_user.name %>
+    </div>
+    <div class="col-md-12">
+      <h2>日報</h2>
       <%= render 'shared/feed' %>
     </div>
   </div>
 <% else %>
-<p>This page will be Home page</p>
-
+  <div>
+    <h1>Daily Work Report</h1>
+    <p>リアルタイムで共有する日報アプリ</p>
+    <p>仕事の視える化で働き方改革！</p>
+  </div>
+  <div class="btn btn-default btn-lg">
+    <%= link_to("ログイン", login_path)%>
+  </div>  
+  <div class="btn btn-default btn-lg text-muted">
+    <%= link_to("ゲストログイン", login_path, {class: "nav-link"})%>
+  </div>
 <% end %>
