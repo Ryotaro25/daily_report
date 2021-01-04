@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
     @group.users << current_user
   end
 
+
   def index
     @groups = Group.all
     @group = Group.find_by(id: params[:id])
@@ -13,6 +14,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
+      @group.users << current_user
       flash[:success] = "グループを作成しました"
       redirect_to groups_path
     else
@@ -37,7 +39,7 @@ class GroupsController < ApplicationController
   def destroy
     Group.find(params[:id]).destroy
     flash[:success] = "グループを削除しました"
-    redirect_to root_path
+    redirect_to groups_path
   end
 
   private

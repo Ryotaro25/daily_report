@@ -2,7 +2,10 @@
   <p><%= group.name %></p>
   <%= link_to "編集",  edit_group_path(group) %>
   <%= link_to "削除", group, method: :delete, data: { confirm: "削除を実行しますか？"} %>
-  <%= group.users.each do |user| %>
-    <%= user.name %>
+  <p>
+    <% group.users.each do |user| %>
+      <%= user.name %>
+    <% end %>
   <% end %>
-<% end %>
+  </p>
+
