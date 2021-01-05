@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   resources :likes, only: [:create, :destroy]
-  resources :groups, only: [:new, :create, :edit, :destroy, :update, :index]
+  resources :groups, only: [:new, :create, :edit, :destroy, :update, :index] do
+    member do
+      get :join, :leave
+    end
+  end
 end
 

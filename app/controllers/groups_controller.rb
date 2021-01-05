@@ -42,9 +42,39 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
-  private
-  def group_params
-    params.require(:group).permit(:name, user_id: [] )
+  #グループに参加する
+  def join
+    @group = Group.find_by(id: params[:id])
+    if !@group.users.include?(current_user)
+      @group.users << current_user
+      redirect_to groups_path
+    else
+      flash[:danger] = "すでに所属しております。"
+      redirect_to groups_path
+    end
   end
+
+  #グループから抜ける
+  def leave
+    @group = Group.find_by(id: params[:id])
+    if @group.users.include?(current_user)
+    @group.users.delete(current_user)
+    redirect_to groups_path
+    else
+      flash[:danger] = "所属しておりません"
+      redirect_to groups_path
+    end
+  end
+
+  def alreadyjoin
+    @group = Group.find_by(id: params[:id])
+    @group.users.include?(current_user)
+  end
+
+
+  private
+    def group_params
+      params.require(:group).permit(:name, user_id: [] )
+    end
 
 end
