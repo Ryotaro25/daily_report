@@ -22,7 +22,7 @@
     <span class="content"><%= time_ago_in_words(micropost.created_at) %>前に投稿されました.</span> 
     </br>
     <span class="links">
-      <li id="detail">
+      <li id="detail" class="detail_position">
         <%= link_to("レポート詳細", micropost) %>
         <%= render "likes/like", micropost: micropost %>
       </li>

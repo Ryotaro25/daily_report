@@ -6,17 +6,21 @@
         </div>
         <div class="col-sm-4 col-md-4">
           <ul>
-            <h6>名前</h6>
+            <h6><span class="glyphicon glyphicon-user"></span>名前</h6>
             <li><%= @user.name %></li>
-            <h6>連絡先</h6>
+            <h6><span class="glyphicon glyphicon-envelope"></span>連絡先</h6>
             <li><%= @user.email %></li>
-            <h6>所属</h6>
-            <li>Team A, Osaka branch</li>
+            <h6><span class="glyphicon glyphicon-flag"></span>所属</h6>
+            <% if current_user.groups.count > 0 %>
+              <li><%= current_user.groups.first.name %></li>
+            <% else %>
+              <li>まだ所属しておりません。</li>
+            <% end %>    
           </ul>
         </div>
         <div class="col-md-12">
+        　<h3>これまでの日報 (<%= @user.microposts.count %>)</h3>
           <% if @user.microposts.any? %>
-            <h3>これまでの日報 (<%= @user.microposts.count %>)</h3>
             <ol class="microposts">
               <%= render @microposts %>
             </ol>

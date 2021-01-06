@@ -96,6 +96,10 @@ body {
   /*background-image: url('background1.jpg');*/
   background-size: cover;
   color: black;
+  margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
   .fill_form {
     margin: 0 auto;
     text-align: center;
@@ -104,10 +108,11 @@ body {
   }
   section {
     margin-bottom: 30px;
-    
+    flex: 1;
   }
   footer {
     background-color: black;
+    color: white;
     height: 80px;
     text-align: center;
     font-size: 20px;
@@ -125,14 +130,15 @@ body {
   margin-bottom: 20px;
   height: 400px;
   width: 300px;
-  .title {
-    
-  }
+  position: relative;
   .post_content {
     padding-top: 10px;
   }
   .links {
     margin-top: 50px;
+  }
+  .detail {
+    margin-top: 20px;
   }
 }
 
@@ -184,7 +190,6 @@ form {
 }
 .link {
   color: lightblue;
-  
 }
 
 .users {
@@ -201,9 +206,9 @@ form {
   color: black;
 }
 .new_like, .edit_like {
-  margin-left: -60px;
-  margin-bottom: -10px;
-  margin-top: -10px;
+  position: absolute;
+  top: 350px;
+  right: 125px;
 }
 .field_with_errors {
   display: contents;
