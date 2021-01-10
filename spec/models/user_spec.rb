@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
 
     it "is invalid without a name length under 51" do
       user = FactoryBot.build(:user, name: "a" * 51)
-      expect(user).to be_invalid
+      expect(user).not_to be_valid
     end
 
     it "is invalid without a email" do
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
 
     it "is invalid without a email length under 255" do
       user = FactoryBot.build(:user, email: "a" * 244 + "@example.com")
-      expect(user).to be_invalid
+      expect(user).not_to be_valid
     end
 
     it "is valid with a email has unique address" do
@@ -37,19 +37,19 @@ RSpec.describe User, type: :model do
 
     it "is invalid with a blank password" do
       user = FactoryBot.build(:user, password: " " * 6)
-      expect(user).to be_invalid
+      expect(user).not_to be_valid
     end
 
     it "is invalid with password length under 5" do
       user = FactoryBot.build(:user, password: "a" * 5)
-      expect(user).to be_invalid
+      expect(user).not_to be_valid
     end
 
     it "reject invalid email adresses" do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com]
       invalid_addresses.each do |invalid_address|
         user = FactoryBot.build(:user, email: invalid_address)
-        expect(user).to be_invalid
+        expect(user).not_to be_valid
       end
     end
 
