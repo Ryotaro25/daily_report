@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     it "is invalid without a name" do
       user = FactoryBot.build(:user, name: nil)
       user.valid?
-      expect(user.errors[:name]).to include("can't be blank")
+      expect(user.errors[:name]).to include("を入力してください")
     end
 
     it "is invalid without a name length under 51" do
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     it "is invalid without a email" do
       user = FactoryBot.build(:user, email: nil)
       user.valid?
-      expect(user.errors[:email]).to include("can't be blank")
+      expect(user.errors[:email]).to include("を入力してください")
     end
 
     it "is invalid without a email length under 255" do
