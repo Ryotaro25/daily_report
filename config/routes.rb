@@ -20,5 +20,6 @@ Rails.application.routes.draw do
       get :join, :leave
     end
   end
+  resources :guest_sessions, only: [:create]
 end
 

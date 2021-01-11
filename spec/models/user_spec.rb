@@ -29,6 +29,11 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
+    it "is valid with an upacase email" do
+      user = FactoryBot.build(:user, email: "EXAMPLE@EMAIL.COM")
+      expect(user).to be_valid
+    end
+
     it "is valid with a email has unique address" do
       user1 = FactoryBot.build(:user)
       user2 = FactoryBot.build(:user)

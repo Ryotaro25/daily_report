@@ -28,6 +28,6 @@
     <%= link_to("ログイン", login_path)%>
   </div>  
   <div class="btn btn-default btn-lg text-muted">
-    <%= link_to("ゲストログイン", login_path, {class: "nav-link"})%>
+    <%= link_to("ゲストログイン", guest_sessions_path, method: :post)%>
   </div>
 <% end %>

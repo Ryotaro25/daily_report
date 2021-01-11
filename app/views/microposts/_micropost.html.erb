@@ -15,7 +15,11 @@
       <p class="title">
       <%= micropost.content %>
       </br>
-      <%= image_tag micropost.display_image if micropost.image.attached? %>
+      <% if micropost.image.attached? %>
+        <%= link_to micropost.image, "data-lightbox" => micropost.display_image do %>
+          <%= image_tag micropost.display_image %>
+        <% end %>  
+      <% end %>  
       </p>
     </span>
     </br>

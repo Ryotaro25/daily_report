@@ -9,4 +9,9 @@ RSpec.describe Comment, type: :model do
     comment = FactoryBot.build(:comment, user_id: nil)
       expect(comment).not_to be_valid
   end
+
+  it "is invalid with no content" do
+    comment = FactoryBot.build(:comment, content: nil)
+      expect(comment).not_to be_valid
+  end
 end
