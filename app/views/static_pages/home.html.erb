@@ -12,7 +12,10 @@
     <div class="col-md-4">
       <%= gravatar_for current_user %>
       <%= current_user.name %>
+      <p>部署ごとの提出状況</p>
+      <%= pie_chart(@pie_chart) %>
     </div>
+    
     <div class="col-md-12">
       <h2>日報</h2>
       <%= render 'shared/feed' %>

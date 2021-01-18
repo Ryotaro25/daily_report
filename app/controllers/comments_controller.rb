@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(id: params[:id])
+    @comment =  Comment.find(params[:micropost_id], params[:comment_id])
     @comment.destroy
     redirect_to  request.referrer || root_url
   end

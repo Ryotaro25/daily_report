@@ -93,7 +93,7 @@ input {
 
 body {
   padding-top: 50px;
-  /*background-image: url('background1.jpg');*/
+  background-color: #f0f8ff;
   background-size: cover;
   color: black;
   margin: 0;
@@ -216,4 +216,7 @@ form {
 
 .comment_list {
   border-bottom: 1px solid black;
+  .comment_detail {
+    padding-left: 15px;
+  }
 }

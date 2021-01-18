@@ -1,4 +1,3 @@
-
 <div>
     <%= link_to gravatar_for(@micropost.user, size: 50), @micropost.user %>
     <span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
@@ -33,9 +32,12 @@
 </div>
 <div>
   <% @comments.each do |comment| %>
-    <p class="comment_list">
-    　 <%= comment.user.name %> <span class="glyphicon glyphicon-comment" ></span>
-      <%= comment.content %>
-    </p>
+    <ul class="comment_list">
+    　<li><%= comment.user.name %> <span class="glyphicon glyphicon-comment" ></span></li>
+      <li><%= comment.content %></li>
+      <% if current_user.name == comment.user.name  %>
+        <li><%= link_to "削除する", micropost_comment_path(comment), method: :delete, data: { confirm: "削除を実行しますか？"} %><li>
+      <% end %>
+    </ul>
   <% end %>  
 </div>
