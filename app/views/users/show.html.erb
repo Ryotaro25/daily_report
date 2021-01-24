@@ -18,6 +18,16 @@
             <% end %>    
           </ul>
         </div>
+        <div class="col-sm-12">
+        <%= month_calendar events: @allpost do |date, usermicroposts| %>
+          <%= date.strftime("%d") %>
+          <% usermicroposts.each do |usermicropost| %>
+            <div>
+              <%= link_to usermicropost.title, micropost_path %>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
         <div class="col-md-12">
         　<h3>これまでの日報 (<%= @user.microposts.count %>)</h3>
           <% if @user.microposts.any? %>

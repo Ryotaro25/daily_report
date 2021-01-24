@@ -30,4 +30,6 @@ class Micropost < ApplicationRecord
     read_users.include?(user)
   end
 
+
+
 end

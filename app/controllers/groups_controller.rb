@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
   #グループに参加する
   def join
     @group = Group.find_by(id: params[:id])
-    if !@group.users.include?(current_user)
+    if !@group.users.include?(current_user) && current_user.groups.count < 1
       @group.users << current_user
       redirect_to groups_path
     else

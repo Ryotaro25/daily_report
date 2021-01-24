@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 6)
+    @allpost = @user.microposts.all.first(3)
+    @micropost = Micropost.find_by(id: params[:id])
   end
 
   def index
@@ -67,5 +69,11 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def guest_user
+      current_user == User.find_by(email: 'test@example.com')
+      redirect_to root_url
+      flash[:danger] = "機能が制限されております。"
     end
 end

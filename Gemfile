@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'jquery-rails'
 gem 'rails-controller-testing'
 gem 'chartkick'
+gem "simple_calendar", "~> 2.0"
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
