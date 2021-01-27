@@ -1,36 +1,69 @@
 <% provide(:title, "home") %>
 <% if logged_in? %>
+　<h1 class="subtitle">メイン画面</h1>
+　<div>
+  　<h3><%= gravatar_for current_user %> <%= current_user.name %></h3>
+  </div> 
   <div class="row">
-    <aside class="col-md-6">
+    <aside class="col-md-offset-1 col-md-4">
       <section class="user_info">
       </section>
       <section class: "time_field">
-        <h2><span class="glyphicon glyphicon-pencil"></span>日報を提出する</h2>
+        <h3 class="subtitle"><span class="glyphicon glyphicon-pencil"></span>日報を提出する</h3>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
-    <div class="col-md-4">
-      <%= gravatar_for current_user %>
-      <%= current_user.name %>
-      <p>部署ごとの提出状況</p>
-      <%= pie_chart(@pie_chart) %>
-    </div>
-    
-    <div class="col-md-12">
-      <h2>日報</h2>
-      <%= render 'shared/feed' %>
-    </div>
+    <div class="col-md-offset-1 col-md-4 chart">
+        <h3 class="subtitle">部署ごとの提出状況</h3>
+        <%= pie_chart(@pie_chart) %>
+      </div>
+      <div class="col-md-12">
+        <h3 class="subtitle">日報</h3>
+        <%= render 'shared/feed' %>
+      </div>
   </div>
 <% else %>
-  <div>
-    <h1>Daily Work Report</h1>
-    <p>リアルタイムで共有する日報アプリ</p>
-    <p>仕事の視える化で働き方改革！</p>
-  </div>
-  <div class="btn btn-default btn-lg">
-    <%= link_to("ログイン", login_path)%>
-  </div>  
-  <div class="btn btn-default btn-lg text-muted">
-    <%= link_to("ゲストログイン", guest_sessions_path, method: :post)%>
-  </div>
+  <section id="about" class="about">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12 sectiontitle">
+                    <h1>リアルタイムな報連相で業務の効率UP!</h1>
+                    <p>SNS型社内日報アプリ</p>
+                </div>
+                <div class="col-lg-5 text-center mainsection">
+                  <div class="btn btn-default btn-lg">
+                    <%= link_to("ログイン", login_path)%>
+                  </div>  
+                </div>
+                <div class="col-lg-5 text-center mainsection">
+                  <div class="btn btn-default btn-lg">
+                    <%= link_to("ゲストログイン", guest_sessions_path, method: :post)%>
+                  </div>
+                </div>
+            </div>
+        </div>
+  </section>
+  <section>
+    <div class="row">
+     　　<div class="col-sm-3 circle">
+          <h3>
+            <strong><span class="glyphicon glyphicon-send"></span></span></strong>
+          </h3>
+          <p>画像や文章を<br>リアルタイムに共有</p>
+        </div>
+        <div class="col-sm-3 circle">
+        <h3>
+          <strong><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></strong>
+        </h3>
+        <p>日報提出率を<br>グラフで可視化</p>
+      </div>
+      <div class="col-sm-3 circle">
+        <h3>
+          <strong><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span></strong>
+        </h3>
+        <p>カレンダーで<br>過去の行動をトレース</p>
+      </div>
+    </div>  
+  </section>
+    
 <% end %>

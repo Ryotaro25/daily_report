@@ -4,10 +4,10 @@
     </div>
     <nav>
      <ul class="nav navbar-nav navbar-right" id="list" >
-        <li id="home">
-          <%= link_to("ホーム", root_url) %>
-        </li>
         <% if logged_in? %>
+          <li id="home">
+            <%= link_to("みんなの日報", root_url) %>
+          </li>
           <li class="members">
             <%= link_to("メンバーズ", users_path) %>
           </li>

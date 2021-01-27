@@ -1,23 +1,22 @@
 <% provide(:title, 'All users') %>
-<h1>メンバーズ</h1>
-
+<h1 class="subtitle"><span class="glyphicon glyphicon-search"></span>メンバー管理</h1>
 <%= will_paginate %>
-
 <%= form_tag(users_path, :method => 'get') do %>
   <%= text_field_tag :search %>
   <%= submit_tag 'メンバーを検索', :name => nil %>
 <% end %>
-
 <ul class="users">
   <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 50 %>
-      <%= link_to user.name, user %>
-      <%= link_to user.email %>
-      <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "delete", user, method: :delete,
-                                    data: { confirm: "You sure?" } %>
-    <% end %>
+    <li class="userindex">
+      <div>
+        <%= gravatar_for user, size: 50 %>
+        　<span class="glyphicon glyphicon-user" aria-hidden="true">　<%= link_to user.name, user %></span>
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true">　<%= link_to user.email %></span>
+        <% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to "delete", user, method: :delete,
+                                      data: { confirm: "You sure?" } %>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>

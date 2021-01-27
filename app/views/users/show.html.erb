@@ -6,20 +6,22 @@
         </div>
         <div class="col-sm-4 col-md-4">
           <ul>
-            <h6><span class="glyphicon glyphicon-user"></span>名前</h6>
-            <li><%= @user.name %></li>
-            <h6><span class="glyphicon glyphicon-envelope"></span>連絡先</h6>
-            <li><%= @user.email %></li>
-            <h6><span class="glyphicon glyphicon-flag"></span>所属</h6>
-            <% if current_user.groups.count > 0 %>
-              <li><%= current_user.groups.first.name %></li>
-            <% else %>
-              <li>まだ所属しておりません。</li>
-            <% end %>    
+            <h4><span class="glyphicon glyphicon-user"></span> 名前: <%= @user.name %></h4>
+            <h4><span class="glyphicon glyphicon-envelope"></span> 連絡先: <%= @user.email %></h4>
+            <h4><span class="glyphicon glyphicon-tags"></span> 
+            所属:
+             <% if current_user.groups.count > 0 %> 
+              <%= current_user.groups.first.name %>
+              <% else %>
+                まだ所属しておりません。
+              <% end %> 
+            </h4>
+               
           </ul>
         </div>
         <div class="col-sm-12">
-        <%= month_calendar events: @allpost do |date, usermicroposts| %>
+        <h3 class="subtitle">カレンダー</h3>
+        <%= week_calendar(number_of_weeks: 2, events: @allpost) do |date, usermicroposts| %>
           <%= date.strftime("%d") %>
           <% usermicroposts.each do |usermicropost| %>
             <div>
@@ -29,7 +31,7 @@
         <% end %>
         </div>
         <div class="col-md-12">
-        　<h3>これまでの日報 (<%= @user.microposts.count %>)</h3>
+        　<h3 class="subtitle">これまでの日報 (<%= @user.microposts.count %>)</h3>
           <% if @user.microposts.any? %>
             <ol class="microposts">
               <%= render @microposts %>
