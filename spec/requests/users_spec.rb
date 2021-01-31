@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  let(:user) { FactoryBot.create(:user) }
 
   describe "get new and create" do
     it "is valid sign up path" do
@@ -60,8 +61,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "get login" do
-    let(:user) { FactoryBot.create(:user) }
-
     it "is valid login path" do
       get login_path
       expect(response).to have_http_status(:success)
@@ -105,8 +104,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "Get index" do
-    let(:user) { FactoryBot.create(:user) }
-
     context "as a corect user" do
       before(:each) do
         @user = FactoryBot.create(:user, name: "Takeshi")
@@ -139,8 +136,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "Get show" do
-    let(:user) { FactoryBot.create(:user) }
-
     context "user with login" do
       before(:each) do
         @user2 = FactoryBot.create(:user) 
@@ -173,8 +168,6 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "Get edit" do
-    let(:user) { FactoryBot.create(:user) }
-
     context "user with login" do
       before(:each) do
         @user2 = FactoryBot.create(:user) 
@@ -187,12 +180,15 @@ RSpec.describe "Users", type: :request do
         expect(response.status).to eq 200
       end
 
+      it "is invalid request" do
+        get edit_user_path(@user2)
+        expect(response.status).to eq 302
+      end
+
       it "redirects to root url when access to another user" do
         get edit_user_path(@user2)
         expect(response).to redirect_to root_path
       end
-
-
     end
 
     context "user witout login" do
@@ -209,7 +205,98 @@ RSpec.describe "Users", type: :request do
 
   end
 
-  describe "Delete users" do
+  describe "Update users" do
+    context "user with login" do
+      before(:each) do
+        
+        post login_path, params: { session: { name: user.name, email: user.email,
+                                              password: user.password, password_confirmation: user.password} }
+      end
+
+      it "is valid update changing name" do
+        user_params = FactoryBot.attributes_for(:user, name: "keisuke")
+        patch user_path(user), params: {user: user_params}
+        expect(user.reload.name).to eq "keisuke"
+      end
+
+      it "is invalid update with name blank" do
+        user_params = FactoryBot.attributes_for(:user, name: " ")
+        patch user_path(user), params: {user: user_params}
+        expect(user.reload.name).to eq "Michael"
+      end
+
+      it "is invalid update with email blank" do
+        user_params = FactoryBot.attributes_for(:user, email: " ")
+        patch user_path(user), params: {user: user_params}
+        expect(response).to render_template :edit
+      end
+
+      it "redirect to edit page with invalid user name" do
+        user_params = FactoryBot.attributes_for(:user, name: " ")
+        patch user_path(user), params: {user: user_params}
+        expect(response).to render_template :edit
+      end
+
+      it "redirect to edit page with invalid user name" do
+        user_params = FactoryBot.attributes_for(:user, name: "a" * 51)
+        patch user_path(user), params: {user: user_params}
+        expect(response).to render_template :edit
+      end
+
+      it "is valid update changing email" do
+        user_params = FactoryBot.attributes_for(:user, email: "update@example.com")
+        patch user_path(user), params: {user: user_params}
+        expect(user.reload.email).to eq "update@example.com"
+      end
+
+    end
+
+    context "user with logout" do
+      it "is invalid witout logout" do
+        user_params = FactoryBot.attributes_for(:user, name: "keisuke")
+        patch user_path(user), params: {user: user_params}
+        expect(response.status).to eq 302
+      end
+
+      it "redirects login url" do
+        user_params = FactoryBot.attributes_for(:user, name: "keisuke")
+        patch user_path(user), params: {user: user_params}
+        expect(response).to redirect_to login_url
+      end
+    end
   end
 
+  describe "Delete users" do
+    context "user with login" do
+      before(:each) do
+        @user2 = FactoryBot.create(:user) 
+        post login_path, params: { session: { name: user.name, email: user.email,
+                                              password: user.password, password_confirmation: user.password} }
+      end
+
+      it "is valid access" do
+        expect do
+          delete user_path(user), params: { id: user.id }
+        end.to change(User, :count).by(-1)
+      end
+
+      it "is invalid delete access" do
+        expect do
+          delete user_path(@user2), params: { id: user.id }
+        end.to change(User, :count).by(0)
+      end
+    end
+
+    context "user without login" do
+      it "returns a 302 response" do
+        delete user_path(user), params: { id: user.id }
+        expect(response).to have_http_status "302"
+      end
+
+      it "is invalid request" do
+        delete user_path(user), params: { id: user.id }
+        expect(response).to redirect_to login_url
+      end
+    end
+  end
 end
