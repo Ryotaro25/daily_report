@@ -1,8 +1,9 @@
 <% provide(:title, 'Edit user') %>
 <div class="container fill_form">
-  <h1>アカウント編集</h1>
+  
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 form">
+    <div class="col-md-7 col-md-offset-2 form">
+    <h1 class="subtitle edittitle">アカウント編集</h1>
       <%= form_with(model: @user, local:true ) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
@@ -19,9 +20,13 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <%= f.submit "登録情報を変更する", class: "btn btn-primary" %>
+        
+          <%= link_to "アカウント削除はこちら", @user, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+       
       <% end %>
 
       <div class="gravatar_edit">
+        <br>
         <%= gravatar_for @user %>
         <a href="https://gravatar.com/emails" target="_blank" rel="noopener">変更</a>
       </div>

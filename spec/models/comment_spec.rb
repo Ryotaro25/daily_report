@@ -14,4 +14,9 @@ RSpec.describe Comment, type: :model do
     comment = FactoryBot.build(:comment, content: nil)
       expect(comment).not_to be_valid
   end
+
+  it "is invalid with content over 140" do
+    comment = FactoryBot.build(:comment, content: "a" * 141)
+      expect(comment).not_to be_valid
+  end
 end

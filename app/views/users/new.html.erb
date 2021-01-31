@@ -1,10 +1,10 @@
 <% provide(:title, 'Sign up') %>
 <div class="container fill_form">
-  <h1>アカウント登録</h1>
   <div class="row">
-    <div class="col-md-6 form new_form">
+    <div class="col-md-7 col-md-offset-2 form new_form">
+    <h1 class="subtitle">アカウント登録</h1>
       <%= form_with(model: @user, local:true ) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+        <br><%= render 'shared/error_messages', object: f.object %>
 
         <%= f.label :名前 %>
         <%= f.text_field :name, class: 'form-control', size: 200 %>
@@ -18,7 +18,7 @@
         <%= f.label :パスワード　, "パスワード(確認用)" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-        <%= f.submit "アカウントを作成する", class: "btn btn-default" %>
+        <br><%= f.submit "アカウントを作成する", class: "btn btn-default" %>
       <% end %>
     </div>
 

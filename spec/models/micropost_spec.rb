@@ -45,10 +45,4 @@ RSpec.describe Micropost, type: :model do
     micropost = FactoryBot.build(:micropost, content: "a" * 141)
     expect(micropost).not_to be_valid
   end
-
-  it "is valid with image which is jpeg or png" 
-  it "is valid with image size under 5mb"
-  it "is invalid with image which is not jpeg or png"
-  it "is invalid with image size over 5mb"
-
 end

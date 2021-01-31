@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :guest_user, only: [:edit, :destroy]
 
 
@@ -52,8 +51,8 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "メンバーを削除しました"
-    redirect_to users_url
+    flash[:success] = "アカウントは削除されました"
+    redirect_to root_url
   end
 
   private
@@ -67,13 +66,15 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless @user == current_user
     end
 
+    #一旦使わない
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
 
     def guest_user
-      current_user == User.find_by(email: 'test@example.com')
+      if current_user == User.find_by(email: "guest@example.com")
       redirect_to root_url
       flash[:danger] = "機能が制限されております。"
+      end 
     end
 end
