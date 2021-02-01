@@ -17,7 +17,6 @@ RSpec.describe "Users", type: :request do
                                           password:              "password",
                                           password_confirmation: "password" } }
         }.to change(User, :count).by(1)
-      
       follow_redirect!
       expect(response).to render_template('users/show')
       expect(is_logged_in?).to be_truthy
