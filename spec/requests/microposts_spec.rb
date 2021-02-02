@@ -94,16 +94,80 @@ RSpec.describe "Microposts", type: :request do
         expect(response).to have_http_status "200"
       end
     end
-    
+
+    context "user without login" do
+      it "is invalid request " do
+        get edit_micropost_path(micropost)
+        expect(response).to have_http_status "302"
+      end
+    end
   end
 
-  describe "get update"
+  describe "get update" do
+    context "login user" do
+      before do 
+        post login_path, params: { session: { name: user.name, email: user.email,
+                                              password: user.password, password_confirmation: user.password} }
+      end
+
+      it "updates micropost content" do
+        micropost_params = FactoryBot.attributes_for(:micropost, content: "test")
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(micropost.reload.content).to eq "test"
+      end
+
+      it "updates micropost content" do
+        micropost_params = FactoryBot.attributes_for(:micropost, title: "test")
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(micropost.reload.title).to eq "test"
+      end
+
+      it "render edit with no content" do
+        micropost_params = FactoryBot.attributes_for(:micropost, content: " ")
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(response).to render_template :edit
+      end
+
+      it "render editt with content over 140" do
+        micropost_params = FactoryBot.attributes_for(:micropost, content: "a" * 141)
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(response).to render_template :edit
+      end
+
+      it "render edit with no ctitle" do
+        micropost_params = FactoryBot.attributes_for(:micropost, title: " ")
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(response).to render_template :edit
+      end
+
+      it "render editt with title over 20" do
+        micropost_params = FactoryBot.attributes_for(:micropost, title: "a" * 21)
+        patch micropost_path(micropost), params: {micropost: micropost_params}
+        expect(response).to render_template :edit
+      end
+    end
+  end
 
   describe "get destroy" do
     context "login user" do
+      context "login user" do
+        let(:micropost) { FactoryBot.create(:micropost) }
+        before do 
+          post login_path, params: { session: { name: user.name, email: user.email,
+                                                password: user.password, password_confirmation: user.password} }            
+        end
+
+        it "deletes post successfully" do
+          expect do
+          delete micropost_path(micropost)
+          end.to change(Micropost, :count).by(1)
+        end 
+      end
     end
 
     context "user without login" do
+      let(:micropost) { FactoryBot.create(:micropost) }
+
       it "redirect to root url without login" do
         delete micropost_path(micropost)
         expect(response).to redirect_to login_url
@@ -115,6 +179,4 @@ RSpec.describe "Microposts", type: :request do
       end
     end
   end
-
-
 end
