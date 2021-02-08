@@ -44,6 +44,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~>4.11'
   gem 'spring-commands-rspec'
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
+  before_action :logged_in_user
   
   def new
     @group = Group.new
-    @group.users << current_user
   end
 
 
@@ -14,10 +14,10 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      @group.users << current_user
       flash[:success] = "グループを作成しました"
       redirect_to groups_path
     else
+      flash[:danger] = "グループ名を入力してください"
       render :new
     end
   end
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
       flash[:success] = "グループ名が編集されました"
       redirect_to groups_path
     else
-      render 'edit'
+      redirect_to groups_path
     end
   end
 
