@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Groups", type: :request do
-  context "create group" do
+  describe "create group" do
     context "login user" do
       let(:user) { FactoryBot.create(:user) }
       before(:each) do
@@ -30,7 +30,7 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  context "get index" do
+  describe "get index" do
     context "login user" do
       let(:user) { FactoryBot.create(:user) }
       before(:each) do
@@ -51,7 +51,7 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  context "edit" do
+  describe "edit" do
     let(:user) { FactoryBot.create(:user) }
     let(:group) {FactoryBot.create(:group)}
     context "login user" do
@@ -78,7 +78,7 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  context "update" do
+  describe "update" do
     let(:user) { FactoryBot.create(:user) }
     let(:group) {FactoryBot.create(:group)}
     context "login user" do
@@ -100,7 +100,7 @@ RSpec.describe "Groups", type: :request do
       end
     end
 
-    context "user wihtout login" do
+    describe "user wihtout login" do
       it "is invalid request" do
         group_params = FactoryBot.attributes_for(:group, name: "test")
         patch group_path(group), params: {group: group_params}
@@ -116,7 +116,7 @@ RSpec.describe "Groups", type: :request do
 
   end
 
-  context "destroy" do
+  describe "destroy" do
     let(:user) { FactoryBot.create(:user) }
     let(:group) {FactoryBot.create(:group)}
     
@@ -134,7 +134,7 @@ RSpec.describe "Groups", type: :request do
       end
     end
 
-    context "user wihtout login" do
+    describe "user wihtout login" do
       it "redirects to root url without login" do
         delete group_path(group)
         expect(response).to redirect_to login_url
@@ -142,14 +142,50 @@ RSpec.describe "Groups", type: :request do
     end
   end
 
-  context "join and leave" do
+  describe "join and leave" do
     let(:user) { FactoryBot.create(:user) }
-    let(:group) {FactoryBot.create(:group, user_id: user.id)}
+    let(:group) {FactoryBot.create(:group, user_ids: user.id)}
     
     context "login user" do
       before do
         post login_path, params: { session: { name: user.name, email: user.email,
                                               password: user.password, password_confirmation: user.password} }
+      end
+
+      it "incledes user to group" do
+        expect do
+          get join_group_path(group)
+        end.to change(GroupUser, :count).by(1)
+      end
+
+      it "redirects to index after join" do
+          get join_group_path(group)
+          expect(response).to redirect_to groups_path
+      end
+
+      it "leaves group" do
+        expect do
+          get join_group_path(group)
+          get leave_group_path(group)
+        end.to change(GroupUser, :count).by(0)
+      end
+
+      it "redirects to index after leave  group" do
+          get join_group_path(group)
+          get leave_group_path(group)
+          expect(response).to redirect_to groups_path
+      end
+    end
+    context "user without login" do
+
+      it "redirects to root url after get join" do
+        get join_group_path(group)
+        expect(response).to redirect_to login_url
+      end
+
+      it "redirects to root url after get leave" do
+        get leave_group_path(group)
+        expect(response).to redirect_to login_url
       end
     end
   end
