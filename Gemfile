@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'rails-controller-testing'
 gem 'chartkick'
 gem "simple_calendar", "~> 2.0"
+gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -40,7 +41,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3', '~> 1.4'
+  
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~>4.11'
   gem 'spring-commands-rspec'
