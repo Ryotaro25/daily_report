@@ -25,7 +25,7 @@
           <%= date.strftime("%d") %>
           <% usermicroposts.each do |usermicropost| %>
             <div>
-              <%= link_to usermicropost.title, micropost_path %>
+              <%= usermicropost.title  %>
             </div>
           <% end %>
         <% end %>

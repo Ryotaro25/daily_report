@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dailt Report
 
-Things you may want to cover:
+会社内で使用することを想定したSNS型日報投稿アプリです。
+RubyとRuby on Railsを学び成果物として作成しました。
+下記リンクからご確認お願いいたします。
+<http://54.238.18.182/>
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##使用
