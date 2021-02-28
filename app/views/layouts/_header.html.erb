@@ -1,46 +1,51 @@
-<header class="navbar navbar-fixed-top navbar-default">
-    <div class=" header">
-      <%= link_to "Daily Report", root_path, id: "logo" %></span>
-    </div>
-    <nav>
-     <ul class="nav navbar-nav navbar-right" id="list" >
+
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand"><%= link_to "Daily Report", root_path, id: "logo" %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
         <% if logged_in? %>
-          <li id="home">
-            <%= link_to("みんなの日報", root_url) %>
+          <li class="nav-item">
+            <%= link_to "日報", root_url, class:"nav-link" %>
           </li>
-          <li class="members">
-            <%= link_to("メンバーズ", users_path) %>
+          <li class="nav-item">
+            <%= link_to"メンバーズ", users_path, class:"nav-link" %>
           </li>
-          <li class="dropdown"> 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">グループ<b class="caret"></b></a>
-            <ul class=" dropdown-menu">
-              <li class="groups">
-                <%= link_to("グループ", groups_path) %>
-              </li>
-              <li id="accout">
-              　<%= link_to("新規作成", new_group_path ) %>
-            　</li>
-            </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            グループ
+          　</a>
+            <div class="dropdown-menu dropdown-menu-right animate" >
+             <%= link_to "グループ", groups_path, class: "dropdown-item"%>
+             <%= link_to "新規作成", new_group_path , class: "dropdown-item" %>
+            </div>
           </li>
-          <li class="dropdown"> 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">アカウント<b class="caret"></b></a>
-            <ul class=" dropdown-menu">
-              <li id="accout">
-                <%= link_to("プロフィール", current_user) %>
-              </li>
-              <li id="accout">
-              　<%= link_to("設定", edit_user_path(current_user)) %>
-            　</li>
-              <li id="accout">
-         　　　　 <%= link_to("ログアウト", logout_path, {method: :delete}) %>
-        　　  </li>
-            </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            アカウント
+          　</a>
+            <div class="dropdown-menu dropdown-menu-right animate" >
+              <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
+              <%= link_to "設定", edit_user_path(current_user), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
+            </div>
           </li>
         <% else %>
-          <li id="accout">
-           <%= link_to("新規作成はこちら", signup_path, {class: "nav-link"})%>
+          <li class="nav-item">
+            <%= link_to "新規作成はこちら", signup_path %>
+          </li>
+          <li class="nav-item">
+        　　 <%= link_to "ログイン", login_path %>
           </li>
         <% end %>
       </ul>
-    </nav>
-</header>
+    </div>
+  </div>
+</nav>
+
+    

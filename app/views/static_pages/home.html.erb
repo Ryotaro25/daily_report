@@ -23,47 +23,34 @@
       </div>
   </div>
 <% else %>
-  <section id="about" class="about">
-        <div class="container ">
-            <div class="row">
-                <div class="col-lg-12 sectiontitle">
-                    <h1>リアルタイムな報連相で業務の効率UP!</h1>
-                    <p>SNS型社内日報アプリ</p>
-                </div>
-                <div class="col-lg-5 text-center mainsection">
-                  <div class="btn btn-default btn-lg">
-                    <%= link_to("ログイン", login_path)%>
-                  </div>  
-                </div>
-                <div class="col-lg-5 text-center mainsection">
-                  <div class="btn btn-default btn-lg">
-                    <%= link_to("ゲストログイン", guest_sessions_path, method: :post)%>
-                  </div>
-                </div>
-            </div>
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Daily Report</h1>
+      <p class="lead">SNS型社内日報アプリでリアルタイムな情報共有</p>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <%= link_to "ゲストログインはこちら", guest_sessions_path, method: :post, class:"btn btn-outline-primary btn-lg" %>
         </div>
+      </div>
+    </div>
   </section>
-  <section>
-    <div class="row">
-     　　<div class="col-sm-3 circle">
-          <h3>
-            <strong><span class="glyphicon glyphicon-send"></span></span></strong>
-          </h3>
-          <p>画像や文章を<br>リアルタイムに共有</p>
+
+  <section id="purpose" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <p class="lead">日報1つ提出するにも時間と労力が掛かります。
+          <br>本来の目的とは別に、日報を書くことが目的となってしまいがちです。　
+          <br>Daily Reportを使うことで、情報共有を密にし
+          <br>生産性の向上になることを願っております。</p>
         </div>
-        <div class="col-sm-3 circle">
-        <h3>
-          <strong><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></strong>
-        </h3>
-        <p>日報提出率を<br>グラフで可視化</p>
       </div>
-      <div class="col-sm-3 circle">
-        <h3>
-          <strong><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span></strong>
-        </h3>
-        <p>カレンダーで<br>過去の行動をトレース</p>
-      </div>
-    </div>  
+    </div>
   </section>
-    
+  
 <% end %>

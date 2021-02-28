@@ -13,23 +13,29 @@
  */
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "simple_calendar";
-
-
-
 
 * {
   font-family: sans-serif;
   list-style: none;
-  box-sizing: content-box; 
 }
+header {
+  padding: 156px 0 100px;
+}
+section {
+  text-align: center;
+  margin: 0 auto;
+}
+.explain {
+  
+}
+ 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   resize: vertical;
-  margin-bottom: 15px;
+  
 }
 .btn {
   padding: initial;
@@ -38,32 +44,30 @@ input, textarea, select, .uneditable-input {
 }
 .main_body {
   height: auto;
+  margin-top: 45px;
 }
 h2 {
   color: black;
   padding-left: 150px;
 }
-.row {
-  
+
+.purpose {
+  text-align: center;
+  width: auto;
+  padding-top: 40px;
 }
+
 textarea {
   height: 250px;
   white-space: pre-wrap;
   width: 300px;
 }
-.nav {
-  li {
-    padding-right: 15px;
-    margin: initial;
-    margin-top: 15px;
-  }
-}
+
 .chart {
   padding-top: 30px;
 }
 
 .header {
-  margin-left: 50px;
   font-size: 3.0rem;
   font-style: italic;
   letter-spacing: .1em;
@@ -71,7 +75,6 @@ textarea {
   text-shadow: -3px 2px 0 #bbb;
 }
 .sectiontitle {
-  
   text-align: center;
   font-size: 25px;
   padding-top: 25px;
@@ -147,25 +150,25 @@ input {
 }
 
 body {
-  padding-top: 50px;
-  background: #5588a3; /* fallback for old browsers */
+  background: white; 
   color: black;
   margin: 0 auto;
-  margin-top: 45px;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
+
+    section {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  
   .fill_form {
     margin: 0 auto;
     text-align: center;
     backdrop-filter: blur(10px);
     height: 650px;
   }
-  section {
-    margin-bottom: 30px;
-    flex: 1;
-    
-  }
+  
   footer {
     background-color: black;
     color: white;
@@ -197,8 +200,6 @@ body {
     margin-top: 20px;
   }
 }
-
-
 
 .small_title {
   padding-left: 35px;
@@ -249,7 +250,7 @@ form {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
+   
     div {
       display: flex;
       justify-content: space-evenly;
@@ -262,12 +263,6 @@ form {
       }
       
     }
-  }
-}
-
-.userindex {
-  .nameindex {
-    
   }
 }
 
