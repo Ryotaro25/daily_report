@@ -1,20 +1,16 @@
 <% provide(:title, "home") %>
 <% if logged_in? %>
-　<h1 class="subtitle">メイン画面</h1>
 　<div>
   　<h3><%= gravatar_for current_user %> <%= current_user.name %></h3>
   </div> 
   <div class="row">
-    <aside class="col-md-offset-1 col-md-4">
-      <section class="user_info">
-      </section>
-      <section class: "time_field">
-        <h3 class="subtitle"><span class="glyphicon glyphicon-pencil"></span>日報を提出する</h3>
+    <aside class="col-md-offset-1 col-md-4" style="width:50%;">
+      <section>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
-    <div class="col-md-offset-1 col-md-4 chart">
-        <h3 class="subtitle">部署ごとの提出状況</h3>
+    <div class="col-md-offset-1 col-md-4 chart" style="width:50%;">
+        <h3 class="subtitle">部署比較</h3>
         <%= pie_chart(@pie_chart) %>
       </div>
       <div class="col-md-12">
@@ -26,7 +22,7 @@
   <header class="bg-primary text-white">
     <div class="container text-center">
       <h1>Daily Report</h1>
-      <p class="lead">SNS型社内日報アプリでリアルタイムな情報共有</p>
+      <p class="lead">リアルタイムな情報共有</p>
     </div>
   </header>
 
@@ -34,23 +30,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <%= link_to "ゲストログインはこちら", guest_sessions_path, method: :post, class:"btn btn-outline-primary btn-lg" %>
+          <%= link_to "ゲストログイン", guest_sessions_path, method: :post, class:"btn btn-outline-primary btn-lg" %>
         </div>
       </div>
     </div>
   </section>
-
-  <section id="purpose" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <p class="lead">日報1つ提出するにも時間と労力が掛かります。
-          <br>本来の目的とは別に、日報を書くことが目的となってしまいがちです。　
-          <br>Daily Reportを使うことで、情報共有を密にし
-          <br>生産性の向上になることを願っております。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
 <% end %>
